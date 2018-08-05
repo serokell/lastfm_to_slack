@@ -8,7 +8,8 @@ request(Params) ->
         {<<"api_key">>, ApiKey},
         {<<"format">>, <<"json">>}
     ])]),
-    {ok, Body} = gun:await_body(ConnPid, StreamRef),
+    {ok, Timeout} = application:get_env(lastfm_to_slack, lastfm_request_timeout),
+    {ok, Body} = gun:await_body(ConnPid, StreamRef, Timeout, monitor(process, ConnPid)),
     jsone:decode(Body).
 
 most_recent_track(User) ->

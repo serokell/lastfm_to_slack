@@ -2,6 +2,7 @@
  [{applications, [gun, jsone]},
   {description, "Bridge from Last.fm most recent track over to Slack status"},
   {env, [{lastfm_api_key, <<"c2c8caef263feb06c5bf7e94c7776679">>},
+         {lastfm_request_timeout, 10000},
          {lastfm_users_to_slack_tokens, []},
 	 {polling_interval_ms, 5000},
 	 {slack_status_emoji, <<":musical_note:">>}]}, 
